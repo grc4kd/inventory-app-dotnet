@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 
-namespace inventory_app_dotnet.Controllers;
+namespace api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class InventoryController : ControllerBase
 {
+    private static readonly string[] Names = new[]
+    {
+        "24697-013-01-05", "24698-019-01-10", "24699-009-01-08", 
+    };
+
     private readonly ILogger<InventoryController> _logger;
 
     public InventoryController(ILogger<InventoryController> logger)
@@ -13,14 +18,14 @@ public class InventoryController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet]
+    [HttpGet(Name = "GetWeatherForecast")]
     public IEnumerable<Inventory> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new Inventory
         {
             ID = index,
-            Name = "24697-013-01-05",
-            Kernels = 75
+            Kernels = Random.Shared.Next(0, 2048),
+            Name = Names[Random.Shared.Next(Names.Length)]
         })
         .ToArray();
     }
