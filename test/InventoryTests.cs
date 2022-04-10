@@ -5,35 +5,33 @@ namespace test;
 
 public class InventoryTests
 {
-    private int _id, _kernels;
-    private string? _name;
     private Inventory? _inventory;
 
     [SetUp]
     public void Setup()
     {
-        _id = 0;
-        _name = "";
-        _kernels = 0;
-
-        _inventory = new Inventory
-        {
-            ID = _id,
-            Name = _name,
-            Kernels = _kernels
-        };
+        
     }
 
     [Test]
     public void Inventory_FieldSpecsAndDefaults()
     {
-        Assert.IsNotNull(_inventory);
+        int id = 0;
+        string name = "";
+        int kernels = 0;
+
+        _inventory = new Inventory
+        {
+            ID = id,
+            Name = name,
+            Kernels = kernels
+        };
 
         if (_inventory != null)
         {
             Assert.AreEqual(
-                (_inventory.ID, _inventory.Name, _inventory.Kernels),
-                (_id, _name, _kernels)
+                (id, name, kernels),
+                (_inventory.ID, _inventory.Name, _inventory.Kernels)
             );
         }
     }
