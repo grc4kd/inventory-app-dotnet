@@ -18,7 +18,7 @@ public class InventoryController : ControllerBase
         _logger = logger;
     }
 
-    [HttpGet(Name = "GetWeatherForecast")]
+    [HttpGet(Name = "GetInventory")]
     public IEnumerable<Inventory> Get()
     {
         return Enumerable.Range(1, 5).Select(index => new Inventory
