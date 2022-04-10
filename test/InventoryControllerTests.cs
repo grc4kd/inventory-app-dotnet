@@ -31,10 +31,16 @@ public class InventoryControllerTests
         {
             // act
             records = (api.Inventory[])_inventoryController.Get();
+            
+            // assert
+            Assert.IsNotNull(records);
+            Assert.IsNotNull(mockILogger);
+            if (mockILogger != null)
+            {
+                Assert.IsTrue(mockILogger.Invocations.Count == 1);
+            }
             if (records != null)
             {
-                // assert
-                Assert.IsNotNull(_inventoryController);
                 Assert.AreEqual(5, records.Length);
                 foreach (api.Inventory record in records) 
                 {
