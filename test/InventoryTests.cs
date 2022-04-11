@@ -1,37 +1,78 @@
 using NUnit.Framework;
 using api;
+using System.Linq;
+using System;
 
 namespace test;
 
 public class InventoryTests
 {
-    private InventoryItem? _inventory;
+    private InventoryItem? _inventoryItem;
+    private readonly InventoryItem defaultItem = new()
+    { ID = 0, Name = "", Kernels = 0 };
+    private static readonly string[] Names = new[]
+    { "24697-013-01-05", "24698-019-01-10", "24699-009-01-08" };
 
     [SetUp]
     public void Setup()
     {
-        
+
     }
 
     [Test]
     public void Inventory_FieldSpecsAndDefaults()
     {
+        _inventoryItem = defaultItem;
+        Inventory inventory = new();
+
+        inventory.AddItem(defaultItem);
+        InventoryItem newItem = inventory.GetItem(_inventoryItem.ID);
+
+        Assert.AreEqual(1, inventory.Count());
+        Assert.AreEqual(_inventoryItem.ID, newItem.ID);
+        Assert.AreEqual(_inventoryItem.Name, newItem.Name);
+        Assert.AreEqual(_inventoryItem.Kernels, newItem.Kernels);
+    }
+
+    [Test]
+    public void SillyInventory_Fields()
+    {
+        _inventoryItem = defaultItem;
+        SillyInventory si = new();
+
+        si.AddItem(defaultItem);
+        InventoryItem newItem = si.GetItem(_inventoryItem.ID);
+
+        Assert.AreEqual(newItem.ID, defaultItem.ID);
+        Assert.AreNotEqual(newItem.Name, defaultItem.Name);
+        Assert.IsTrue(newItem.Kernels == 42);
+    }
+
+    [Test]
+    public void Inventory_GetItemArray()
+    {
         int id = 0;
         string name = "";
         int kernels = 0;
 
-        _inventory = new InventoryItem
-        {
-            ID = id,
-            Name = name,
-            Kernels = kernels
-        };
+        Inventory _inventory = new();
 
-        if (_inventory != null)
+        _inventory.SetItems(Enumerable.Range(1, 5)
+            .Select(index => new InventoryItem
+            {
+                ID = index,
+                Kernels = Random.Shared.Next(0, 2048),
+                Name = Names[Random.Shared.Next(Names.Length)]
+            })
+            .ToList());
+
+        Assert.AreEqual(5, _inventory.Count());
+
+        if (_inventoryItem != null)
         {
             Assert.AreEqual(
                 (id, name, kernels),
-                (_inventory.ID, _inventory.Name, _inventory.Kernels)
+                (_inventoryItem.ID, _inventoryItem.Name, _inventoryItem.Kernels)
             );
         }
     }

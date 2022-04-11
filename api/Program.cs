@@ -1,3 +1,5 @@
+using api;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,8 +9,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// custom services
-//builder.Services.AddScoped<>
+// custom services, use interface for inventory methods
+// and a concrete Inventory implementation
+builder.Services.AddScoped<IInventory, SillyInventory>();
 
 var app = builder.Build();
 

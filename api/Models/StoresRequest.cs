@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace api.Model
+namespace api
 {
     public class StoresRequest
     {

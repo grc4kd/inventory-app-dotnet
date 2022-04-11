@@ -7,37 +7,37 @@ namespace api.Controllers;
 public class InventoryController : ControllerBase
 {
     private readonly ILogger<InventoryController> _logger;
+    private readonly IInventory _inventory;
 
-    static HttpClient client = new HttpClient();
+#pragma warning disable IDE0044 // Add readonly modifier
+    static HttpClient client = new();
+#pragma warning restore IDE0044 // Add readonly modifier
 
-    public InventoryController(ILogger<InventoryController> logger)
+    public InventoryController(ILogger<InventoryController> logger, IInventory inventory)
     {
         _logger = logger;
-        string message = $"Logging to ${_logger}";
-        _logger.Log(LogLevel.Debug, message);
+        if (logger.IsEnabled(LogLevel.Debug))
+        {
+            _logger.LogDebug("Logging is on.");
+        }
+
+        _inventory = inventory;
     }
 
     [HttpGet(Name = "GetInventory")]
-    public async Task<Inventory> Get(string path)
+    public async Task<IEnumerable<InventoryItem>> Get(string path)
     {
         // async on io-bound task (still pretty fast though)
         HttpResponseMessage response = await client.GetAsync(path);
-        Inventory inventory = new();
         if (response.IsSuccessStatusCode)
         {
-            Task<Model.MockData?> mockTask = 
-                response.Content.ReadFromJsonAsync<Model.MockData>();
+            MockData? mockTask = await response.Content.ReadFromJsonAsync<MockData>();
             if (mockTask != null)
             {
-                Model.MockData? mockResult = mockTask.Result;
-                if (mockResult != null
-                    && mockResult.Inventory != null)
-                {
-                    inventory = new Inventory(mockResult.Inventory);
-                }
+                return mockTask.GetInventoryList(_inventory);
             }
         }
 
-        return inventory;
+        return Array.Empty<InventoryItem>();
     }
 }
