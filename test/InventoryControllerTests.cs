@@ -13,6 +13,7 @@ public class InventoryControllerTests
     private Mock<ILogger<InventoryController>>? mockILogger;
     private InventoryController? _inventoryController;
 
+    private readonly string mockiPath = "https://mocki.io/v1/0077e191-c3ae-47f6-bbbd-3b3b905e4a60";
 
     [SetUp]
     public void Setup()
@@ -30,7 +31,9 @@ public class InventoryControllerTests
         if (_inventoryController != null)
         {
             // act
-            records = (api.Inventory[])_inventoryController.Get();
+            var _response = _inventoryController.Get(mockiPath);
+            var _result = _response.Result;
+            records = (api.Inventory[])_result;
             
             // assert
             Assert.IsNotNull(records);

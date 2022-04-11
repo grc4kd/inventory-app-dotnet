@@ -13,6 +13,8 @@ public class InventoryController : ControllerBase
 
     private readonly ILogger<InventoryController> _logger;
 
+    static HttpClient client = new HttpClient();
+
     public InventoryController(ILogger<InventoryController> logger)
     {
         _logger = logger;
@@ -21,14 +23,26 @@ public class InventoryController : ControllerBase
     }
 
     [HttpGet(Name = "GetInventory")]
-    public IEnumerable<Inventory> Get()
+    public async Task<Inventory[]> Get(string path)
     {
-        return Enumerable.Range(1, 5).Select(index => new Inventory
+        HttpResponseMessage response = await client.GetAsync(path);
+        if (response.IsSuccessStatusCode)
         {
-            ID = index,
-            Kernels = Random.Shared.Next(0, 2048),
-            Name = Names[Random.Shared.Next(Names.Length)]
-        })
-        .ToArray();
+            var inventoryTask = response.Content.ReadFromJsonAsync<Inventory[]>();
+            if (inventoryTask.Result != null)
+            {
+                return inventoryTask.Result;
+            }
+        }
+
+        return Array.Empty<Inventory>();
+
+        //return Enumerable.Range(1, 5).Select(index => new Inventory
+        //{
+        //    ID = index,
+        //    Kernels = Random.Shared.Next(0, 2048),
+        //    Name = Names[Random.Shared.Next(Names.Length)]
+        //})
+        //.ToArray();
     }
 }
