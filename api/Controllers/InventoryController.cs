@@ -16,6 +16,8 @@ public class InventoryController : ControllerBase
     public InventoryController(ILogger<InventoryController> logger)
     {
         _logger = logger;
+        string message = $"Logging to ${_logger}";
+        _logger.Log(LogLevel.Debug, message);
     }
 
     [HttpGet(Name = "GetInventory")]

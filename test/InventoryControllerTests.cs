@@ -38,6 +38,7 @@ public class InventoryControllerTests
             if (mockILogger != null)
             {
                 Assert.IsTrue(mockILogger.Invocations.Count == 1);
+                Assert.DoesNotThrow(() => mockILogger.Verify());
             }
             if (records != null)
             {
