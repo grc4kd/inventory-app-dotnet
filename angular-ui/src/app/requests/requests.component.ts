@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Request } from '../request'
 
 @Component({
   selector: 'app-requests',
@@ -6,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-  request = 'request for "24697-013-01-05"';
+  request: Request = {
+    id: 1,
+    name: 'request for "24697-013-01-05"',
+    quantity: 22
+  };
+
   constructor() { }
 
   ngOnInit(): void {
