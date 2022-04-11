@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./requests.component.css']
 })
 export class RequestsComponent implements OnInit {
-
+  request = 'request for "24697-013-01-05"';
   constructor() { }
 
   ngOnInit(): void {
