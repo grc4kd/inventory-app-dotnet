@@ -6,11 +6,6 @@ namespace api.Controllers;
 [Route("[controller]")]
 public class InventoryController : ControllerBase
 {
-    private static readonly string[] Names = new[]
-    {
-        "24697-013-01-05", "24698-019-01-10", "24699-009-01-08", 
-    };
-
     private readonly ILogger<InventoryController> _logger;
 
     static HttpClient client = new HttpClient();
@@ -23,26 +18,26 @@ public class InventoryController : ControllerBase
     }
 
     [HttpGet(Name = "GetInventory")]
-    public async Task<Inventory[]> Get(string path)
+    public async Task<Inventory> Get(string path)
     {
+        // async on io-bound task (still pretty fast though)
         HttpResponseMessage response = await client.GetAsync(path);
+        Inventory inventory = new();
         if (response.IsSuccessStatusCode)
         {
-            var inventoryTask = response.Content.ReadFromJsonAsync<Inventory[]>();
-            if (inventoryTask.Result != null)
+            Task<Model.MockData?> mockTask = 
+                response.Content.ReadFromJsonAsync<Model.MockData>();
+            if (mockTask != null)
             {
-                return inventoryTask.Result;
+                Model.MockData? mockResult = mockTask.Result;
+                if (mockResult != null
+                    && mockResult.Inventory != null)
+                {
+                    inventory = new Inventory(mockResult.Inventory);
+                }
             }
         }
 
-        return Array.Empty<Inventory>();
-
-        //return Enumerable.Range(1, 5).Select(index => new Inventory
-        //{
-        //    ID = index,
-        //    Kernels = Random.Shared.Next(0, 2048),
-        //    Name = Names[Random.Shared.Next(Names.Length)]
-        //})
-        //.ToArray();
+        return inventory;
     }
 }

@@ -13,7 +13,7 @@ public class InventoryControllerTests
     private Mock<ILogger<InventoryController>>? mockILogger;
     private InventoryController? _inventoryController;
 
-    private readonly string mockiPath = "https://mocki.io/v1/0077e191-c3ae-47f6-bbbd-3b3b905e4a60";
+    private const string mockDataPath = "https://mocki.io/v1/0077e191-c3ae-47f6-bbbd-3b3b905e4a60";
 
     [SetUp]
     public void Setup()
@@ -23,17 +23,17 @@ public class InventoryControllerTests
     }
 
     [Test]
-    public void Inventory_GetFiveRecords()
+    public void Inventory_GetMockRecords()
     {
         // arrange
-        api.Inventory[] records;
+        api.Inventory records;
 
         if (_inventoryController != null)
         {
             // act
-            var _response = _inventoryController.Get(mockiPath);
+            var _response = _inventoryController.Get(mockDataPath);
             var _result = _response.Result;
-            records = (api.Inventory[])_result;
+            records = _result;
             
             // assert
             Assert.IsNotNull(records);
@@ -45,8 +45,8 @@ public class InventoryControllerTests
             }
             if (records != null)
             {
-                Assert.AreEqual(5, records.Length);
-                foreach (api.Inventory record in records) 
+                Assert.AreEqual(3, records.GetItems().Length);
+                foreach (api.InventoryItem record in records.GetItems()) 
                 {
                     Assert.GreaterOrEqual(record.ID, 0);
                     Assert.GreaterOrEqual(record.Kernels, 0);

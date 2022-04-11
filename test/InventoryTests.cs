@@ -5,7 +5,7 @@ namespace test;
 
 public class InventoryTests
 {
-    private Inventory? _inventory;
+    private InventoryItem? _inventory;
 
     [SetUp]
     public void Setup()
@@ -20,7 +20,7 @@ public class InventoryTests
         string name = "";
         int kernels = 0;
 
-        _inventory = new Inventory
+        _inventory = new InventoryItem
         {
             ID = id,
             Name = name,
