@@ -1,3 +1,20 @@
-<h2>Request# {{request.id}} Details</h2>
-<div><span>name: </span>{{request.name}}</div>
-<div><span>quantity: </span>{{request.quantity}}</div>
+<h2>Requests</h2>
+<ul class="requests">
+  <li *ngFor="let request of requests">
+    <button type="button"
+            (click)="onSelect(request)">
+      <span class="badge">{{request.id}}</span>
+      <span class="name">{{request.name}}</span>
+    </button>
+  </li>
+</ul>
+
+<div *ngIf="selectedRequest">
+  <h2>Request# {{selectedRequest.id}} Details</h2>
+  <div>name: {{selectedRequest.name}}</div>
+  <div>
+    <label for="request-name">Request name: </label>
+    <input id="request-name" [(ngModel)]="selectedRequest.name"
+           placeholder="name" readonly/>
+  </div>
+</div>
