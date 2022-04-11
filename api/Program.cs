@@ -11,7 +11,7 @@ builder.Services.AddSwaggerGen();
 
 // custom services, use interface for inventory methods
 // and a concrete Inventory implementation
-builder.Services.AddScoped<IInventory, SillyInventory>();
+builder.Services.AddScoped<IInventory, Inventory>();
 
 var app = builder.Build();
 
