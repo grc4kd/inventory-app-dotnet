@@ -1,4 +1,4 @@
-name: .NET
+name: .NET NUnit Tests
 
 on:
   push:
