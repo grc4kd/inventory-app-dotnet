@@ -1,9 +1,11 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { RequestService } from './request.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing'
+import { RequestsComponent } from './requests/requests.component';
 
 describe('RequestService', () => {
   let service: RequestService;
+  let fixture: ComponentFixture<RequestsComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -14,12 +16,5 @@ describe('RequestService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('should return requests from endpoint', () => {
-    let requests: Request[] = [];
-    service.getRequests()
-      .subscribe(requests => requests = requests)
-    expect(requests.length).toBeGreaterThan(0);
   });
 });
