@@ -15,4 +15,11 @@ describe('RequestService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should return requests from endpoint', () => {
+    let requests: Request[] = [];
+    service.getRequests()
+      .subscribe(requests => requests = requests)
+    expect(requests.length).toBeGreaterThan(0);
+  });
 });
