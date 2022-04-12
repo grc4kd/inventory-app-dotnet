@@ -1,0 +1,8 @@
+<h2>Top Requests</h2>
+<div class="requests-menu">
+  <a *ngFor="let request of requests"
+     routerLink="/detail/{{request.id}}">
+    <span class="badge">Req# {{request.id}}</span>
+    {{request.name}}
+  </a>
+</div>

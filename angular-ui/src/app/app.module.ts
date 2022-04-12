@@ -7,13 +7,15 @@ import { RequestsComponent } from './requests/requests.component';
 import { InventoryItemComponent } from './inventory-item/inventory-item.component';
 import { RequestDetailComponent } from './request-detail/request-detail.component';
 import { AppRoutingModule } from './app-routing.module';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RequestsComponent,
     InventoryItemComponent,
-    RequestDetailComponent
+    RequestDetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
