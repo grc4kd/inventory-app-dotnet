@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Request } from '../request';
-import { REQUESTS } from '../mock-requests';
+import { RequestService } from '../request.service';
 
 @Component({
   selector: 'app-requests',
@@ -9,14 +9,19 @@ import { REQUESTS } from '../mock-requests';
 })
 
 export class RequestsComponent implements OnInit {
-  requests = REQUESTS;
+  requests: Request[] = [];
   selectedRequest?: Request;
   onSelect(request: Request): void {
     this.selectedRequest = request;
   }
 
-  constructor() { }
+  constructor(private requestService: RequestService) { }
+
+  getRequests(): void {
+    this.requests = this.requestService.getRequests();
+  }
 
   ngOnInit(): void {
+    this.getRequests();
   }
 }
