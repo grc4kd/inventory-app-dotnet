@@ -1,0 +1,9 @@
+<div *ngIf="request">
+  <h2>Request# {{request.id}} Details</h2>
+  <div><span>name: </span>{{request.name}}</div>
+  <div>
+    <label for="request-item">Quantity requested: </label>
+    <input id="request-item" [(ngModel)]="request.quantity"
+           placeholder="quantity" readonly />
+  </div>
+</div>

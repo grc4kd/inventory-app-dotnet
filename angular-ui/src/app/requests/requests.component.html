@@ -1,7 +1,8 @@
 <h2>Requests</h2>
 <ul class="requests">
   <li *ngFor="let request of requests">
-    <button type="button"
+    <button [class.selected]="request === selectedRequest"
+            type="button"
             (click)="onSelect(request)">
       <span class="badge">{{request.id}}</span>
       <span class="name">{{request.name}}</span>
@@ -9,12 +10,4 @@
   </li>
 </ul>
 
-<div *ngIf="selectedRequest">
-  <h2>Request# {{selectedRequest.id}} Details</h2>
-  <div>name: {{selectedRequest.name}}</div>
-  <div>
-    <label for="request-item">Quantity requested: </label>
-    <input id="request-item" [(ngModel)]="selectedRequest.quantity"
-           placeholder="qty" readonly/>
-  </div>
-</div>
+<app-request-detail [request]="selectedRequest"></app-request-detail>
