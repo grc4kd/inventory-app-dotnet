@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RequestsComponent } from './requests/requests.component';
 import { InventoryItemComponent } from './inventory-item/inventory-item.component';
 import { RequestDetailComponent } from './request-detail/request-detail.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { RequestDetailComponent } from './request-detail/request-detail.componen
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
