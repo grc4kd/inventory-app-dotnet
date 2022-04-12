@@ -7,6 +7,8 @@ namespace api.Controllers;
 public class InventoryController : ControllerBase
 {
     private readonly ILogger<InventoryController> _logger;
+    // use DI on inventory classes
+    // reference to inventory is abstract
     private readonly IInventory _inventory;
 
 #pragma warning disable IDE0044 // Add readonly modifier
@@ -27,13 +29,15 @@ public class InventoryController : ControllerBase
     [HttpGet(Name = "GetInventory")]
     public async Task<IEnumerable<InventoryItem>> Get(string path)
     {
-        // async on io-bound task (still pretty fast though)
+        // async on io-bound task, possible delay while fetching content from WWW
         HttpResponseMessage response = await client.GetAsync(path);
         if (response.IsSuccessStatusCode)
         {
             MockData? mockTask = await response.Content.ReadFromJsonAsync<MockData>();
             if (mockTask != null)
             {
+                // IInventory interface method is abstract 
+                // concrete implementation is used at runtime
                 return mockTask.GetInventoryList(_inventory);
             }
         }
