@@ -2,17 +2,20 @@ import { Injectable } from '@angular/core';
 import { Request } from './request';
 import { REQUESTS } from './mock-requests';
 import { Observable, of } from 'rxjs'
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequestService {
+  // URL to web api
+  private requestsUrl = 'api/requests';
 
-  constructor() { }
+  constructor(
+    private http: HttpClient) { }
 
   getRequests(): Observable<Request[]> {
-    const requests = of(REQUESTS);
-    return requests;
+    return this.http.get<Request[]>(this.requestsUrl);
   }
 
   getRequest(id: number): Observable<Request> {
