@@ -3,7 +3,7 @@
     <ProjectGuid>f4d786ff-dcd5-4e72-90f0-fd853ed86004</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupCommand>npm start</StartupCommand>
+    <StartupCommand>npm test</StartupCommand>
     <JavaScriptTestFramework>Jasmine</JavaScriptTestFramework>
   </PropertyGroup>
   <ItemGroup>
