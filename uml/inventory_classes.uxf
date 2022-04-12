@@ -1,85 +1,215 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
   <help_text>Space for diagram notes</help_text>
-  <zoom_level>10</zoom_level>
+  <zoom_level>5</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>300</x>
-      <y>140</y>
-      <w>160</w>
-      <h>100</h>
+      <x>400</x>
+      <y>335</y>
+      <w>120</w>
+      <h>35</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;SI&gt;&gt;
-Inventory
+    <panel_attributes>Inventory
 --
+-_items: List&lt;InventoryItem&gt;
 --
-+GetItems()
-</panel_attributes>
++GetItemArray(): InventoryItem[0..*]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>140</y>
-      <w>210</w>
-      <h>100</h>
+      <x>575</x>
+      <y>335</y>
+      <w>105</w>
+      <h>50</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;SI&gt;&gt;
-InventoryItem
+    <panel_attributes>InventoryItem
 --
-+Id: int
-+Name: string
++ID: int
 +Kernels: int
++Name: string
 --
 </panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>515</x>
+      <y>355</y>
+      <w>70</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=*</panel_attributes>
+    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>440</y>
+      <w>115</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>StoresRequest
+--
++ID: int
++InventoryID: int
++RequestedKernels: int
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>380</y>
+      <w>125</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+m1=1
+m2=1
+m2pos=5,10</panel_attributes>
+    <additional_attributes>10.0;180.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>95</x>
+      <y>350</y>
+      <w>105</w>
+      <h>30</h>
+    </coordinates>
+    <panel_attributes>MockData
+--
+--
++GetInventoryList(IInventory)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>400</x>
+      <y>245</y>
+      <w>110</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>IInventory
+--
++GetItem(int): InventoryItem
++GetItems(): List&lt;InventoryItem&gt;
++Count(): int
++AddItem(InventoryItem)
++SetItems(List&lt;InventoryItem&gt;)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
       <x>450</x>
-      <y>180</y>
-      <w>200</w>
-      <h>40</h>
+      <y>300</y>
+      <w>15</w>
+      <h>45</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
-m1=1
-m2=*</panel_attributes>
-    <additional_attributes>10.0;10.0;180.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>340</y>
-      <w>210</w>
-      <h>110</h>
+      <x>0</x>
+      <y>315</y>
+      <w>55</w>
+      <h>15</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;SI&gt;&gt;
-StoresRequest
-{CustomerID}
+    <panel_attributes>InventoryItem</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>0</x>
+      <y>380</y>
+      <w>55</w>
+      <h>15</h>
+    </coordinates>
+    <panel_attributes>StoresRequest</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>45</x>
+      <y>325</y>
+      <w>60</w>
+      <h>45</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*
+m2pos=-5,15</panel_attributes>
+    <additional_attributes>100.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>40</x>
+      <y>360</y>
+      <w>65</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=0..*
+m1pos=-5,7
+m2pos=5,2</panel_attributes>
+    <additional_attributes>110.0;10.0;10.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>255</x>
+      <y>350</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>InventoryController
 --
--Id: int
+_-inventory: IInventory_
 --
-+GetLineItem(id: int): InventoryItem
-+GetQty(id: int): int
++Get(path: string)
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>490</x>
-      <y>230</y>
-      <w>260</w>
-      <h>190</h>
+      <x>355</x>
+      <y>355</y>
+      <w>55</w>
+      <h>20</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
+    <panel_attributes>lt=&lt;-
 m1=1
-m2=1
-m2pos=5,10</panel_attributes>
-    <additional_attributes>10.0;170.0;240.0;10.0</additional_attributes>
+m2=1</panel_attributes>
+    <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>195</x>
+      <y>355</y>
+      <w>70</w>
+      <h>20</h>
+    </coordinates>
+    <panel_attributes>lt=..&gt;
+</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
   </element>
 </diagram>
