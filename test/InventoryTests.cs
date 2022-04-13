@@ -51,10 +51,6 @@ public class InventoryTests
     [Test]
     public void Inventory_GetItemArray()
     {
-        int id = 0;
-        string name = "";
-        int kernels = 0;
-
         Inventory _inventory = new();
 
         _inventory.SetItems(Enumerable.Range(1, 5)
@@ -68,12 +64,23 @@ public class InventoryTests
 
         Assert.AreEqual(5, _inventory.Count());
 
-        if (_inventoryItem != null)
+        Assert.IsNotNull(_inventory);
+
+        if (_inventory != null)
         {
-            Assert.AreEqual(
-                (id, name, kernels),
-                (_inventoryItem.ID, _inventoryItem.Name, _inventoryItem.Kernels)
-            );
+            for (int i = 0; i < _inventory.Count(); i++)
+            {
+                _inventoryItem = _inventory.GetItem(i);
+
+                Assert.AreEqual(i + 1, _inventoryItem.ID);
+                Assert.GreaterOrEqual(_inventoryItem.Kernels, 0);
+                Assert.IsInstanceOf<string>(_inventoryItem.Name);
+                Assert.NotNull(_inventoryItem.Name);
+                if (_inventoryItem.Name != null)
+                {
+                    Assert.Greater(_inventoryItem.Name.Length, 0);
+                }
+            }
         }
     }
 }
