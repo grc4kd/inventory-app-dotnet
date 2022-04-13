@@ -12,7 +12,6 @@ public class InventoryControllerTests
     // no desire for logging while units under test
     private Mock<ILogger<InventoryController>>? mockILogger;
     private InventoryController? _inventoryController;
-    private api.Inventory? _inventory;
 
     private const string mockDataPath = "https://mocki.io/v1/0077e191-c3ae-47f6-bbbd-3b3b905e4a60";
 
@@ -20,22 +19,17 @@ public class InventoryControllerTests
     public void Setup()
     {
         mockILogger = new Mock<ILogger<InventoryController>>();
-        _inventory = new api.Inventory();
-        _inventoryController = new InventoryController(mockILogger.Object, _inventory);
+        _inventoryController = new InventoryController(mockILogger.Object);
     }
 
     [Test]
     public void Inventory_GetMockRecords()
     {
-        // arrange
-        api.Inventory records = new();
-
         if (_inventoryController != null)
         {
             // act
             var _response = _inventoryController.Get(mockDataPath);
-            List<api.InventoryItem> _result = (List<api.InventoryItem>)_response.Result;
-            records.SetItems(_result);
+            List<api.InventoryItem> records = (List<api.InventoryItem>)_response.Result;
             
             // assert
             Assert.IsNotNull(records);
@@ -47,8 +41,8 @@ public class InventoryControllerTests
             }
             if (records != null)
             {
-                Assert.AreEqual(3, records.GetItems().Count);
-                foreach (api.InventoryItem record in records.GetItems()) 
+                Assert.AreEqual(3, records.Count);
+                foreach (api.InventoryItem record in records) 
                 {
                     Assert.GreaterOrEqual(record.ID, 0);
                     Assert.GreaterOrEqual(record.Kernels, 0);
