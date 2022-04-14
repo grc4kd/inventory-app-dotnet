@@ -3,16 +3,16 @@
 namespace api.Controllers;
 
 [ApiController]
-[Route("requests")]
-public class RequestController : Controller
+[Route("api/[controller]")]
+public class RequestsController : ControllerBase
 {
-    private readonly ILogger<RequestController> _logger;
+    private readonly ILogger<RequestsController> _logger;
     private readonly IHttpClientFactory _httpClientFactory;
 
     // TODO: use options pattern / DI for config
     private readonly string mockServerPath = "v1/0077e191-c3ae-47f6-bbbd-3b3b905e4a60";
 
-    public RequestController(ILogger<RequestController> logger,
+    public RequestsController(ILogger<RequestsController> logger,
         IHttpClientFactory httpClientFactory)
     {
         _logger = logger;

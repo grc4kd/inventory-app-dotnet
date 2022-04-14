@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace api.Controllers;
 
 [ApiController]
-[Route("inventory")]
+[Route("api/[controller]")]
 public class InventoryController : ControllerBase
 {
     private readonly ILogger<InventoryController> _logger;
