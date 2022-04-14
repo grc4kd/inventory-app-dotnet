@@ -3,6 +3,9 @@ using api.Controllers;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Threading.Tasks;
+using System.Net;
 
 namespace test;
 
@@ -12,23 +15,26 @@ public class InventoryControllerTests
     // no desire for logging while units under test
     private Mock<ILogger<InventoryController>>? mockILogger;
     private InventoryController? _inventoryController;
-
-    private const string mockDataPath = "https://mocki.io/v1/0077e191-c3ae-47f6-bbbd-3b3b905e4a60";
+    // TODO: set up a mock HttpClient with Moq.Contrib.HttpClient
+    // or similar strategy / wrapper
+    private Mock<IHttpClientFactory> mockIHttpClientFactory;
 
     [SetUp]
     public void Setup()
     {
+        // setup mock objects
         mockILogger = new Mock<ILogger<InventoryController>>();
-        _inventoryController = new InventoryController(mockILogger.Object);
+        _inventoryController = new InventoryController(mockILogger.Object, mockIHttpClientFactory.Object);
     }
 
     [Test]
     public void Inventory_GetMockRecords()
     {
+        Assert.Fail("This test depends on HTTP calls, so a mock for that would be optimal.");
         if (_inventoryController != null)
         {
             // act
-            var _response = _inventoryController.Get(mockDataPath);
+            var _response = _inventoryController.Get();
             List<api.InventoryItem> records = (List<api.InventoryItem>)_response.Result;
             
             // assert
