@@ -1,2 +1,5 @@
-<p>inventory-item works!</p>
+<div *ngIf="inventoryItem">
+  <h2>{{inventoryItem.name}}</h2>
+  <span>Quantity available: {{inventoryItem.kernels}}</span>
+</div>
 <button type="button" (click)="goBack()">go back</button>

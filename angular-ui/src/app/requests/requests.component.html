@@ -2,7 +2,7 @@
 <ul class="requests">
   <li *ngFor="let request of requests">
     <a routerLink="/detail/{{request.id}}">
-      <span class="badge">{{request.id}}</span> {{request.name}}
+      <span class="badge">{{request.id}}</span> Qty: {{request.requestedKernels}}
     </a>
   </li>
 </ul>

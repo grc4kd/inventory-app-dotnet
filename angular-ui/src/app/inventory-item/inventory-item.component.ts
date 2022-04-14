@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { InventoryItem } from '../inventory-item';
@@ -28,7 +28,6 @@ export class InventoryItemComponent implements OnInit {
       .subscribe(inventory => this.inventoryItem = inventory);
   }
 
-  // TODO: this go back function should probably be in a separate component
   goBack(): void {
     this.location.back();
   }
