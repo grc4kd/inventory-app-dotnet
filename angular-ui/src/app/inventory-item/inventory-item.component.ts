@@ -28,7 +28,6 @@ export class InventoryItemComponent implements OnInit {
       .subscribe(inventory => this.inventoryItem = inventory);
   }
 
-  // TODO: this go back function should probably be in a separate component
   goBack(): void {
     this.location.back();
   }
