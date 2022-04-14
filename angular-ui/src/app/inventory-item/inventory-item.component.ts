@@ -28,6 +28,19 @@ export class InventoryItemComponent implements OnInit {
       .subscribe(inventory => this.inventoryItem = inventory);
   }
 
+  // TODO: use this function to conditionally display a message
+  // property binding and attribute directives, I think? need more bootcamp
+  checkStock(requestedKernels: number): boolean {
+    if (this.inventoryItem != null) {
+      const kernels = this.inventoryItem.kernels;
+      if (kernels < requestedKernels)
+        return false;
+      else
+        return true;
+    }
+    return false; // no kernels to count
+  }
+
   goBack(): void {
     this.location.back();
   }
