@@ -22,7 +22,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// use interface / DI for ...
+// use interface / DI for HttpClient / singleton design pattern
+// HttpClient should only use a single instance per appliaction
+builder.Services.AddHttpClient("mocki", client =>
+{
+    client.BaseAddress = new Uri("https://mocki.io/");
+});
 
 // we all make mistakes, it is part of what makes us human
 // TODO: find a better opportunity for DI

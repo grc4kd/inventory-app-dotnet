@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Request } from './request';
 import { REQUESTS } from './mock-requests';
 import { Observable, of } from 'rxjs'
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

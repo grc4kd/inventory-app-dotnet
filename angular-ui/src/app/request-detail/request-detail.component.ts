@@ -27,8 +27,4 @@ export class RequestDetailComponent implements OnInit {
     this.requestService.getRequest(id)
       .subscribe(request => this.request = request);
   }
-
-  goBack(): void {
-    this.location.back();
-  }
 }

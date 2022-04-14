@@ -1,9 +1,6 @@
 {
   "/api": {
     "target": "https://localhost:4301",
-    "secure": false,
-    "headers": {
-      "Connection": "Keep-Alive"
-    }
+    "secure": false
   }
 }

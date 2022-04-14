@@ -8,6 +8,6 @@ namespace api
     // For records, the implementation is compiler synthesized and uses the declared data members.        
     
     public record StoresRequest([property: JsonPropertyName("id")] int ID,
-    [property: JsonPropertyName("inventoryID")] int InventoryID,
+    [property: JsonPropertyName("inventoryId")] int InventoryID,
     [property: JsonPropertyName("requestedKernels")] int RequestedKernels);
 }

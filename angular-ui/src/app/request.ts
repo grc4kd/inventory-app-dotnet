@@ -1,5 +1,5 @@
 export interface Request {
   id: number;
-  name: string;
-  quantity: number;
+  inventoryId: number;
+  requestedKernels: number;
 }

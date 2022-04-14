@@ -1,16 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RequestService } from './request.service';
+import { InventoryItemService } from './inventory-item.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing'
 
-describe('RequestService', () => {
-  let service: RequestService;
+describe('InventoryItemService', () => {
+  let service: InventoryItemService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule]
     });
-    service = TestBed.inject(RequestService);
+    service = TestBed.inject(InventoryItemService);
   });
 
   it('should be created', () => {
