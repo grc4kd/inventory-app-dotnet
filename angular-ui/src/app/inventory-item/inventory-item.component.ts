@@ -10,7 +10,7 @@ import { InventoryItemService } from '../inventory-item.service';
   styleUrls: ['./inventory-item.component.css']
 })
 export class InventoryItemComponent implements OnInit {
-  @Input() inventoryItem: InventoryItem | undefined;
+  inventoryItem: InventoryItem | undefined;
 
   constructor(
     private route: ActivatedRoute,
