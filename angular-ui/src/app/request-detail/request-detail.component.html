@@ -5,5 +5,6 @@
     <label for="request-item">Quantity requested: </label>
     <input id="request-item" [(ngModel)]="request.requestedKernels"
            placeholder="quantity" readonly />
+    <app-inventory-item [inventoryItem]="currentItem"></app-inventory-item>
   </div>
 </div>

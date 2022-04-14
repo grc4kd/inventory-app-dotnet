@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { InventoryItem } from '../inventory-item';
@@ -10,7 +10,7 @@ import { InventoryItemService } from '../inventory-item.service';
   styleUrls: ['./inventory-item.component.css']
 })
 export class InventoryItemComponent implements OnInit {
-  inventoryItem: InventoryItem | undefined;
+  @Input() inventoryItem: InventoryItem | undefined;
 
   constructor(
     private route: ActivatedRoute,
