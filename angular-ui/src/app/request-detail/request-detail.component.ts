@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Request } from '../request';
 import { RequestService } from '../request.service';
+import { InventoryItem } from '../inventory-item';
 
 @Component({
   selector: 'app-request-detail',
@@ -10,6 +11,7 @@ import { RequestService } from '../request.service';
 })
 export class RequestDetailComponent implements OnInit {
   request: Request | undefined;
+  currentItem: InventoryItem | undefined;
 
   constructor(
     private route: ActivatedRoute,

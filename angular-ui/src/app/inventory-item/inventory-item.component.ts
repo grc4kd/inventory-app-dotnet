@@ -10,7 +10,7 @@ import { InventoryItemService } from '../inventory-item.service';
   styleUrls: ['./inventory-item.component.css']
 })
 export class InventoryItemComponent implements OnInit {
-  inventoryItem: InventoryItem | undefined;
+  @Input() inventoryItem: InventoryItem | undefined;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +28,7 @@ export class InventoryItemComponent implements OnInit {
       .subscribe(inventory => this.inventoryItem = inventory);
   }
 
+  // TODO: this go back function should probably be in a separate component
   goBack(): void {
     this.location.back();
   }
