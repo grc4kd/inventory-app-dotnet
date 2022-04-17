@@ -21,12 +21,34 @@ export class InventoryItemService {
       );
   }
 
+  /**
+   * get an inventory item, looking it up by id
+   * @param id
+   */
   getInventoryItem(id: number): Observable<InventoryItem> {
     const url = `${this.inventoryUrl}/${id}`;
     return this.http.get<InventoryItem>(url).pipe(
       // error handling when request(id) does not exist
       catchError(this.handleError<InventoryItem>(`getRequest id=${id}`))
     );
+  }
+
+  // TODO: display a warning message if the request quantity exceeds stock quantity
+  // causing a backorder
+
+  /**
+   * checkStock(rK) returns true if there are enough kernels in stock
+   * returns false if request quantity exceeds stock quantity
+   * @param requestedKernels the requested number of kernels
+   */
+  async checkStock(itemID: number, requestedKernels: number): Promise<boolean> {
+    const inventoryItem = await this.getInventoryItem(itemID).toPromise();
+
+    if (inventoryItem) {
+      return inventoryItem.kernels >= requestedKernels;
+    }
+
+    return false; // no kernels to count
   }
 
   /**
