@@ -37,7 +37,7 @@ export class InventoryItemService {
   // causing a backorder
 
   /**
-   * checkStock(rK) returns true if there are enough kernels in stock
+   * returns true if there are enough kernels in stock
    * returns false if request quantity exceeds stock quantity
    * @param requestedKernels the requested number of kernels
    */
