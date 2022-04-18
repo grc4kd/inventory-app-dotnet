@@ -17,20 +17,24 @@ public class InventoryControllerTests
     private InventoryController? _inventoryController;
     // TODO: set up a mock HttpClient with Moq.Contrib.HttpClient
     // or similar strategy / wrapper
-    private Mock<IHttpClientFactory> mockIHttpClientFactory;
+    private Mock<IHttpClientFactory>? mockIHttpClientFactory;
 
     [SetUp]
     public void Setup()
     {
-        // setup mock objects
-        mockILogger = new Mock<ILogger<InventoryController>>();
-        _inventoryController = new InventoryController(mockILogger.Object, mockIHttpClientFactory.Object);
+        
     }
 
     [Test]
     public void Inventory_GetMockRecords()
     {
+        // setup mock objects
+        mockILogger = new Mock<ILogger<InventoryController>>();
+        mockIHttpClientFactory = new Mock<IHttpClientFactory>();
+
         Assert.Fail("This test depends on HTTP calls, so a mock for that would be optimal.");
+        _inventoryController = new InventoryController(mockILogger.Object, mockIHttpClientFactory.Object);
+
         if (_inventoryController != null)
         {
             // act
